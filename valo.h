@@ -7,80 +7,103 @@
 // ---- Library --- //
 #include <iostream>
 #include <ctime>
+using namespace std;
 
 // Define Pointer
 #define info(P) P->info
 #define next(P) P->next
-#define prev(P) P->prev
+#define nextWea(P) P->nextWea
+#define nextRel(P) P->nextRel
 #define first(R) (R).first
-#define last(R) (R).last
 
-using namespace std;
+//===========================//
 
-// ---- Deklarasi Pointer adrPlayer --- //
-typedef int *addressAgent;
-typedef struct elmPlayer *adrPlayer;
-typedef struct elmWeapon *adrWeapon;
-
-// ----- Deklarasi Tipe Bentukan Infotype ----- //
-struct infotypePlayer
-{
-    string idPlayer;
-    string namaPlayer;
-    string tier;
-    string tanggal;
-};
-
-struct infotypeWeapon {
-    string idWeapon;
-    string namaWeapon;
+struct Senjata{
+    string namaSenjata;
     string damage;
     string fireRate;
     string price;
     string type;
 };
 
-// ------ Tipe Bentukan Element List ------ //
+typedef Senjata infotypeSenjata;
 
-//Tipe bentukan Parent Player
-struct elmPlayer
-{
-    infotypePlayer info;
-    adrWeapon daftarWeapon;
-    adrPlayer next;
-    adrPlayer prev;
-};
-
-//Tipe bentukan Child Weapon
-struct elmWeapon {
-    infotypeWeapon info;
+typedef struct Weapon *adrWeapon;
+struct Weapon{
+    infotypeSenjata info;
     adrWeapon next;
 };
 
-// ------ Tipe Bentukan List ----- //
-struct listPlayer
-{
-    adrPlayer first;
-    adrPlayer last;
+struct listWeapon{
+    adrWeapon first;
 };
 
-struct listWeapon {
-    adrWeapon first;
+//===========================//
+
+typedef struct relation *adrRelation;
+struct relation{
+    adrWeapon nextWea;
+    adrRelation next;
+
+};
+
+//===========================//
+
+struct Pemain{
+    int idPemain;
+    string namaPemain;
+    string tier;
+};
+
+typedef Pemain infotypePemain;
+
+typedef struct Player *adrPlayer;
+struct Player{
+    infotypePemain info;
+    adrPlayer next;
+    adrRelation nextRel;
+};
+
+struct listPlayer{
+    adrPlayer first;
 };
 
 // ============================ //
 
 void createListPlayer(listPlayer &L);
-adrPlayer newElmPlayer(infotype x);
-adrPlayer searchPlayer(listPlayer L, infotype x);
-void showPlayer(listPlayer L, infotype x);
+adrPlayer newElmPlayer(infotypePemain x);
+void insertLastPlayer(listPlayer &L, infotypePemain x);
+adrPlayer searchPlayer(listPlayer L, infotypePemain x);
+void showSearchPlayer(listPlayer L, infotypePemain x);
 void showAllPlayer(listPlayer L);
+void deleteFirstPlayer(listPlayer &L, adrPlayer P);
+void deleteLastPlayer(listPlayer &L, adrPlayer P);
+void deleteAfterPlayer(listPlayer &L, adrPlayer Prec, adrPlayer P);
 
 // ============================ //
 
 void createListWeapon(listWeapon &L);
-adrPlayer newElmWeapon(infotype x);
-adrPlayer searchWeapon(listWeapon L, infotype x);
-void showWeapon(listWeapon L, infotype x);
+adrWeapon newElmWeapon(infotypeSenjata x);
+void insertLastWeapon(listWeapon &L, infotypeSenjata x);
+adrWeapon searchWeapon(listWeapon L, infotypeSenjata x);
+void showSearchWeapon(listWeapon L, infotypeSenjata x);
+void showAllWeapon(listWeapon L);
+void deleteFirstWeapon(listWeapon &L, adrWeapon P);
+
+//=============================//
+
+adrRelation newRelation();
+void insertRelation(adrPlayer &P, adrWeapon B);
+void showAllRelation(listPlayer LP);
+
+//=============================//
+void searchUsedItems(listPlayer LP, infotypePemain x);
+void countUsedItems(listPlayer LP, infotypePemain x);
+void deleteAllRelation(listPlayer LP, adrRelation &P, infotypePemain x);
+void deleteAllData(listPlayer &LP, listWeapon &LB, infotypePemain x);
+int countPlayers(listPlayer LP);
+int selectionMenu();
+
+
 
 #endif // VALORANT_H_INCLUDED

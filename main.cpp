@@ -1,47 +1,121 @@
-#include <iostream>
 #include "valo.h"
 
 using namespace std;
 
-int main() {
-    int choice;
-    do {
-        cout << "=========================\n";
-        cout << "||       MENU         ||\n";
-        cout << "=========================\n";
-        cout << "|| 1. Pilihan 1       ||\n";
-        cout << "|| 2. Pilihan 2       ||\n";
-        cout << "|| 3. Pilihan 3       ||\n";
-        cout << "|| 4. Pilihan 4       ||\n";
-        cout << "|| 5. Keluar          ||\n";
-        cout << "=========================\n";
-        cout << "Masukkan pilihan Anda: ";
-        cin >> choice;
+int main()
+{
+    //====================================//
 
-        switch(choice) {
-            case 1:
-                // Kode untuk pilihan 1
-                cout << "Anda memilih opsi 1.\n";
-                break;
-            case 2:
-                // Kode untuk pilihan 2
-                cout << "Anda memilih opsi 2.\n";
-                break;
-            case 3:
-                // Kode untuk pilihan 3
-                cout << "Anda memilih opsi 3.\n";
-                break;
-            case 4:
-                // Kode untuk pilihan 4
-                cout << "Anda memilih opsi 4.\n";
-                break;
-            case 5:
-                cout << "Terima kasih telah menggunakan program ini. Sampai jumpa!\n";
-                break;
-            default:
-                cout << "Pilihan tidak valid. Silakan coba lagi.\n";
+    listPlayer LP;
+    createListPlayer(LP);
+    adrPlayer pP;
+    infotypePemain dataPlayer;
+
+    //====================================//
+
+    listWeapon LB;
+    createListWeapon(LB);
+    adrWeapon bP;
+    infotypeSenjata dataWeapon;
+
+    //====================================//
+
+    adrRelation rP;
+
+    char YN;
+
+    int input = selectionMenu();
+    while(input != 0){
+        switch(input){
+        case 1:
+            cout<<"Input No.ID Player: ";
+            cin>>dataPlayer.idPemain;
+            cout<<"Input Nama Player: ";
+            cin>>dataPlayer.namaPemain;
+            cout<<"Input Tier Player: ";
+            cin>>dataPlayer.tier;
+            insertLastPlayer(LP, dataPlayer);
+            cout<<endl;
+            break;
+        case 2:
+            cout<<"input nama Senjata : ";
+            cin>>dataWeapon.namaSenjata;
+            cout<<"input Damage Senjata : ";
+            cin>>dataWeapon.damage;
+            cout<<"input Fire Rate Senjata : ";
+            cin>>dataWeapon.fireRate;
+            cout<<"input Harga Senjata : ";
+            cin>>dataWeapon.price;
+            cout<<"input Type Senjata : ";
+            cin>>dataWeapon.type;
+            insertLastWeapon(LB, dataWeapon);
+            cout<<endl;
+            break;
+        case 3:
+            cout<<"No.ID Player: ";
+            cin>>dataPlayer.idPemain;
+            cout<<"Weapon yang digunakan: ";
+            cin>>dataWeapon.namaSenjata;
+            pP = searchPlayer(LP, dataPlayer);
+            bP = searchWeapon(LB, dataWeapon);
+            insertRelation(pP, bP);
+            cout<<endl;
+            break;
+        case 4:
+            cout<<endl;
+            showAllPlayer(LP);
+            cout<<endl;
+            break;
+        case 5:
+            cout<<endl;
+            showAllWeapon(LB);
+            cout<<endl;
+            break;
+        case 6:
+            cout<<endl;
+
+            cout<<endl;
+            break;
+        case 7:
+            cout<<"Masukkan No.ID pemain yang dicari: ";
+            cin>>dataPlayer.idPemain;
+            showSearchPlayer(LP, dataPlayer);
+            cout<<endl;
+            break;
+        case 8:
+            cout<<"Masukkan nama Weapon yang dicari: ";
+            cin>>dataWeapon.namaSenjata;
+            showSearchWeapon(LB, dataWeapon);
+            cout<<endl;
+            break;
+        case 9:
+            cout<<"Masukkan No.ID pemain: ";
+            cin>>dataPlayer.idPemain;
+            
+            cout<<endl;
+            break;
+        case 10:
+            cout<<"Masukkan No.ID pemain: ";
+            cin>>dataPlayer.idPemain;
+
+            cout<<endl;
+            break;
+        case 11:
+            cout<<"Masukkan No.ID pemain yang ingin dihapus semua relasinya : ";
+            cin>>dataPlayer.idPemain;
+            cout<<endl;
+            deleteAllRelation(LP, rP, dataPlayer);
+            cout<<endl;
+            break;
+        case 12:
+            cout<<"Masukkan No.ID pemain yang ingin dihapus semua datanya: ";
+            cin>>dataPlayer.idPemain;
+            cout<<endl;
+            deleteAllData(LP, LB, dataPlayer);
+            cout<<endl;
+            break;
         }
-    } while(choice != 5);
-
+        input = selectionMenu();
+    }
     return 0;
 }
