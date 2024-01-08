@@ -1,7 +1,5 @@
 #include "valo.h"
 
-using namespace std;
-
 void createListPlayer(listPlayer &L){
     first(L) = NULL;
 }
@@ -239,6 +237,7 @@ void searchUsedItems(listPlayer LP, infotypePemain x){
         cout<<"`Pemain yang ingin dicari senjata yang digunakannya tidak ditemukan`"<<endl;
     }
 }
+
 
 void countUsedItems(listPlayer LP, infotypePemain x){
     adrPlayer pP = searchPlayer(LP, x);

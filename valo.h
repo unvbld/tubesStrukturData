@@ -101,9 +101,7 @@ void searchUsedItems(listPlayer LP, infotypePemain x);
 void countUsedItems(listPlayer LP, infotypePemain x);
 void deleteAllRelation(listPlayer LP, adrRelation &P, infotypePemain x);
 void deleteAllData(listPlayer &LP, listWeapon &LB, infotypePemain x);
-int countPlayers(listPlayer LP);
 int selectionMenu();
-
 
 
 #endif // VALORANT_H_INCLUDED

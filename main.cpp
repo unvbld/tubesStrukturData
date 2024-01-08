@@ -1,7 +1,5 @@
 #include "valo.h"
 
-using namespace std;
-
 int main()
 {
     //====================================//
@@ -73,31 +71,37 @@ int main()
             break;
         case 6:
             cout<<endl;
-
+            showAllRelation(LP);
             cout<<endl;
             break;
         case 7:
             cout<<"Masukkan No.ID pemain yang dicari: ";
             cin>>dataPlayer.idPemain;
             showSearchPlayer(LP, dataPlayer);
+            cout<<"Berikut Data Keseluruhan Pemain"<<endl;
+            showAllPlayer(LP);
             cout<<endl;
             break;
         case 8:
             cout<<"Masukkan nama Weapon yang dicari: ";
             cin>>dataWeapon.namaSenjata;
             showSearchWeapon(LB, dataWeapon);
+            cout<<"Berikut Data Keseluruhan Senjata"<<endl;
+            showAllWeapon(LB);
             cout<<endl;
             break;
         case 9:
-            cout<<"Masukkan No.ID pemain: ";
+            cout<<"Masukkan No.ID pemain yang ingin dicari data senjatanya: ";
             cin>>dataPlayer.idPemain;
-            
+            cout<<endl;
+            searchUsedItems(LP, dataPlayer);
             cout<<endl;
             break;
         case 10:
-            cout<<"Masukkan No.ID pemain: ";
+            cout<<"Masukkan No.ID pemain yang ingin dihitung banyak senjatanya: ";
             cin>>dataPlayer.idPemain;
-
+            cout<<endl;
+            countUsedItems(LP, dataPlayer);
             cout<<endl;
             break;
         case 11:
